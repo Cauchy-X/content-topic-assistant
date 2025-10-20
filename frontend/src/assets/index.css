@@ -1,0 +1,252 @@
+/* 全局样式 */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* 布局样式 */
+.site-layout {
+  min-height: 100vh;
+}
+
+.site-layout-content {
+  margin: 24px 16px;
+  padding: 24px;
+  background: #fff;
+  min-height: 360px;
+}
+
+/* 登录/注册页面样式 */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f0f2f5;
+}
+
+.auth-card {
+  width: 400px;
+}
+
+/* 表格样式 */
+.topic-table .ant-table-tbody > tr:hover > td {
+  cursor: pointer;
+}
+
+/* 卡片样式 */
+.analysis-card {
+  margin-bottom: 16px;
+}
+
+/* 标签样式 */
+.platform-tag {
+  margin-right: 8px;
+}
+
+/* 统计卡片样式 */
+.stat-card {
+  text-align: center;
+}
+
+/* 加载样式 */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+/* 空状态样式 */
+.empty-container {
+  padding: 40px 0;
+  text-align: center;
+}
+
+/* 响应式样式 */
+@media (max-width: 768px) {
+  .site-layout-content {
+    margin: 16px 8px;
+    padding: 16px;
+  }
+  
+  .auth-card {
+    width: 90%;
+  }
+}
+
+/* 自定义滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* 动画效果 */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 高亮搜索关键词 */
+.highlight {
+  background-color: #fffb8f;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+/* 卡片悬停效果 */
+.hover-card {
+  transition: all 0.3s ease;
+}
+
+.hover-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+/* 按钮组样式 */
+.button-group {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+/* 标签云样式 */
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* 进度条样式 */
+.progress-container {
+  margin: 16px 0;
+}
+
+/* 文本截断样式 */
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-truncate-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* 分割线样式 */
+.custom-divider {
+  margin: 16px 0;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* 话题卡片样式 */
+.topic-card {
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
+
+.topic-card .ant-card-head {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.topic-card .ant-card-body {
+  padding: 16px;
+}
+
+/* 话题标题样式 */
+.topic-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #262626;
+}
+
+.topic-title:hover {
+  color: #1890ff;
+}
+
+/* 话题元信息样式 */
+.topic-meta {
+  display: flex;
+  align-items: center;
+  color: #8c8c8c;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.topic-meta-item {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+}
+
+.topic-meta-item .anticon {
+  margin-right: 4px;
+}
+
+/* 话题统计样式 */
+.topic-stats {
+  display: flex;
+  gap: 16px;
+}
+
+.topic-stat {
+  display: flex;
+  align-items: center;
+  color: #8c8c8c;
+  font-size: 12px;
+}
+
+.topic-stat .anticon {
+  margin-right: 4px;
+}

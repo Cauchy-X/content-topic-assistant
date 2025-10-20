@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  # MySQL数据库
+  mysql:
+    image: mysql:8.0
+    container_name: content-assistant-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root123456
+      MYSQL_DATABASE: content_assistant
+      MYSQL_USER: content_user
+      MYSQL_PASSWORD: content_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ../database/init:/docker-entrypoint-initdb.d
+    networks:
+      - content-assistant-network
+
+  # Redis缓存
+  redis:
+    image: redis:6-alpine
+    container_name: content-assistant-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - content-assistant-network
+
+  # 后端API服务
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: content-assistant-backend
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/content_assistant?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: content_user
+      SPRING_DATASOURCE_PASSWORD: content_pass
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY}
+      DOUBAO_API_KEY: ${DOUBAO_API_KEY}
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - content-assistant-network
+
+  # 前端应用
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: content-assistant-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - content-assistant-network
+
+volumes:
+  mysql_data:
+  redis_data:
+
+networks:
+  content-assistant-network:
+    driver: bridge
